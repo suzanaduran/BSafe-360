@@ -2,8 +2,8 @@
 
 This repository was created as part of Suzana Duran Bernardes' Ph.D. dissertation. It contains the information needed for reproducing the BSafe-360 device, which is a portable and customizable multi-sensor device. The idea behind the development of the BSafe-360 device was to have an all-in-one tool that facilitated cycling data collection without needing to spend thousands of dollars and brought state-of-the-art practices to bicycle safety studies.
 
-### [Hardware](hardware)
-The hardware folder contains all the instructions required for assembling one unit of the BSafe-360. It includes the circuit information, soldering tips, schematics, and enclosure 3D design and mold.
+### Hardware
+The [hardware](hardware) folder contains all the instructions required for assembling one unit of the BSafe-360. It includes the circuit information, soldering tips, schematics, and enclosure 3D design and mold.
 
 ## Software
 The codes needed for collecting and storing the data are written in Python 3. You can find them in the [python_scripts](python_scripts) folder.
