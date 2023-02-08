@@ -18,8 +18,6 @@ import sqlite3
 from sqlite3 import Error
 import time
 import traceback
-from config import *
-from alerts import *
 from mpu6050 import mpu6050 as mpu
 from getmac import get_mac_address
 
