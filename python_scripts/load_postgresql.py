@@ -4,6 +4,7 @@
 # License: GPL 2.0                                              #
 #################################################################
 
+# SETUP PHASE
 # Libraries
 import os
 import csv
@@ -14,6 +15,7 @@ import logging
 from datetime import datetime
 from getmac import get_mac_address
 
+# INITIALIZATION PHASE
 logging.basicConfig(filename="postgres_log.txt", level=logging.ERROR) # Create log file for debugging
 
 mac = get_mac_address(interface="eth0") # Get mac address of the unit
@@ -71,7 +73,8 @@ while True:
             # Create a SQL connection to local SQLite database
             con = sqlite3.connect("/home/pi/connbike_copy.db")
             cur = con.cursor()
-
+            
+            # PROCESSING PHASE
             # Check the most recent record in the online database
             sql_pg = ("SELECT mac, dtg FROM [SCHEMA].[TABLE_NAME] WHERE mac = '%s' order by dtg desc limit 1;" % (mac))
             cur_pg.execute(sql_pg)
@@ -81,7 +84,8 @@ while True:
 
             cur.execute("SELECT * FROM gpsreadings where mac = '%s' and dtg > '%s' order by dtg asc;" % (mac,latest_pg[0][1])) # Get all the values for the unit that were collected after the most recent record stored in the online database
             data = cur.fetchall() # Save the most recent local data in a new variable
-
+            
+            # STORAGE PHASE
             if data is None: # Check if there was any data collected after the most recent record stored online
                 continue
             else:
@@ -99,6 +103,8 @@ while True:
                     cur_pg.copy_expert("COPY [SCHEMA].[TABLE_NAME] FROM STDIN CSV HEADER",fp) # Uploaded values stored in the temporary csv file to online database
                         
                     connpg.commit()
+
+                # TERMINATION PHASE
                 except:
                     con.close() 
                     cur_pg.close()
@@ -107,7 +113,7 @@ while True:
                     # Close and unlink temporary file
                     fp.close()
                     os.unlink(fp.name)
-                
+
         # Be sure to close the connection
         con.close()
         cur_pg.close()

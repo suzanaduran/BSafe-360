@@ -6,6 +6,7 @@
 # License: GPL 2.0                                              #
 #################################################################
 
+# SETUP PHASE
 # Libraries
 import RPi.GPIO as GPIO
 import os
@@ -21,6 +22,7 @@ import traceback
 from mpu6050 import mpu6050 as mpu
 from getmac import get_mac_address
 
+# INITIALIZATION PHASE
 gpsd = None # Seting the global variable
 log_rate = 0.5 # 0.5 seconds
 os.system('clear') # Clear the terminal (optional)
@@ -148,6 +150,7 @@ gpsp.start() # Start the GPS up
 # Start the sniffer
 while True:
   try:
+    # PROCESSING PHASE
     # Get the distance readings from the right and left ultrasonic sensors
     usreading_r = usDistance(TRIG_r,ECHO_r)
     usreading_l = usDistance(TRIG_l,ECHO_l)
@@ -166,6 +169,7 @@ while True:
     
     temp = sensor.get_temp() # Get the temperature from the MPU6050
     
+    # STORAGE PHASE
     data = [gpsd.fix.latitude, gpsd.fix.longitude, gpsd.utc, gpsd.fix.time, gpsd.fix.altitude, 
             gpsd.fix.eps, gpsd.fix.epx, gpsd.fix.epv, gpsd.fix.ept, gpsd.fix.speed, gpsd.fix.climb, 
             gpsd.fix.track , gpsd.fix.mode, usreading_r, usreading_l, gyro_x, gyro_y, gyro_z, acce_x, 
@@ -175,12 +179,15 @@ while True:
 
     time.sleep(log_rate) # Set to whatever the log_rate is
 
+  # TERMINATION PHASE (INTERRUPTION)
   except KeyboardInterrupt:
     break
   except: # Log a message in case of error
     if DEBUG: print(traceback.format_exc())
     log_message(1, 'Reading error.')
     continue
+
+# TERMINATION PHASE (END OF PROGRAM)
 log_message(0, 'Sensor stopped.') # Log message to indicate the sensor data collection has stopped
 
 conn.close() # Close connection to the local database
