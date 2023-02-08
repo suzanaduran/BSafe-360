@@ -16,7 +16,6 @@ import threading
 from contextlib import closing
 from datetime import datetime, timedelta
 import sqlite3
-from sqlite3 import Error
 import time
 import traceback
 from mpu6050 import mpu6050 as mpu
