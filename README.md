@@ -23,3 +23,17 @@ sudo python3 /home/pi/connbike_10.py &
 sudo python3 /home/pi/load_postgre_v5.py &
 ```
 make sure to include the & sign in the end of each line to guarantee access to the OS system while the programs run in the background.
+
+## Citation
+You can cite this work through our paper:
+
+MDPI and ACS Style
+Duran Bernardes, S.; Ozbay, K. BSafe-360: An All-in-One Naturalistic Cycling Data Collection Tool. Sensors 2023, 23, 6471. https://doi.org/10.3390/s23146471
+
+AMA Style
+Duran Bernardes S, Ozbay K. BSafe-360: An All-in-One Naturalistic Cycling Data Collection Tool. Sensors. 2023; 23(14):6471. https://doi.org/10.3390/s23146471
+
+Chicago/Turabian Style
+Duran Bernardes, Suzana, and Kaan Ozbay. 2023. "BSafe-360: An All-in-One Naturalistic Cycling Data Collection Tool" Sensors 23, no. 14: 6471. https://doi.org/10.3390/s23146471
+
+
