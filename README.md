@@ -10,7 +10,7 @@ The [hardware](hardware) folder contains a list of the components used in the de
 The codes needed for collecting and storing the data are written in Python 3. You can find them in the [python_scripts](python_scripts) folder.
 
 - [data_acquisition.py](python_scripts/data_acquisition.py): This is the script responsible for reading the data from the sensors, making any required transformation to the data, and locally storing the data in the SQLite database.
-- [load_postgre_v5.py](python_scripts/load_postgre_v5.py): This is the script responsible for reading the data in the local SQLite database and sending it to a PostgreSQL database in a server.
+- [load_postgresql.py](python_scripts/load_postgresql.py): This is the script responsible for reading the data in the local SQLite database and sending it to a PostgreSQL database in a server.
 
 ### Running scripts at startup
 To make sure the device is collecting data as soon as the RPi is on, you can run the following command in your RPi terminal:
@@ -19,8 +19,8 @@ sudo nano /etc/rc.local
 ```
 then, add the following lines right before the exit line:
 ```
-sudo python3 /home/pi/connbike_10.py &
-sudo python3 /home/pi/load_postgre_v5.py &
+sudo python3 /home/pi/data_acquisition.py &
+sudo python3 /home/pi/load_postgresql.py &
 ```
 make sure to include the & sign in the end of each line to guarantee access to the OS system while the programs run in the background.
 
