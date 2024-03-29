@@ -9,7 +9,7 @@ The [hardware](hardware) folder contains a list of the components used in the de
 ## Software
 The codes needed for collecting and storing the data are written in Python 3. You can find them in the [python_scripts](python_scripts) folder.
 
-- [connbike_10.py](python_scripts/connbike_10.py): This is the script responsible for reading the data from the sensors, making any required transformation to the data, and locally storing the data in the SQLite database.
+- [data_acquisition.py](python_scripts/data_acquisition.py): This is the script responsible for reading the data from the sensors, making any required transformation to the data, and locally storing the data in the SQLite database.
 - [load_postgre_v5.py](python_scripts/load_postgre_v5.py): This is the script responsible for reading the data in the local SQLite database and sending it to a PostgreSQL database in a server.
 
 ### Running scripts at startup
